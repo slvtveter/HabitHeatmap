@@ -11,7 +11,7 @@ internal import Combine
 class HabitViewModel: ObservableObject {
     @Published var habit: Habit {
         didSet {
-            
+            saveData()
         }
     }
     private let key = "aa)"

@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject var viewModel = HabitViewModel()
     let columns = Array(repeating: GridItem(.fixed(30), spacing: 5), count: 7)
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             HStack {
                 Text("Streak: \(viewModel.habit.completedDates.count)")
             }
@@ -26,20 +26,13 @@ struct ContentView: View {
             Button(action: {viewModel.markDone(on: Date())}){
                 Text("Complete today!")
             }
-            
-            
-            
-            
-            
-            
-            
-            
+       
             Button(action: { viewModel.remark() }) {
                 Text("Delete last")
             }
             
-            .navigationTitle(viewModel.habit.name)
-        }
+          //  .navigationTitle(viewModel.habit.name)
+       // }
     }
 }
 
