@@ -33,12 +33,11 @@ struct ContentView: View {
                 NavigationLink(destination: HabitListView(viewModel: viewModel)) {
                     HStack{
                         Image(systemName: "leaf")
-                        Text("All habits")
+                        Text("Show all habits")
                     }
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
-                    .frame(maxWidth: .infinity)
                     .background(Color.blue)
                     .cornerRadius(12)
                         
@@ -47,7 +46,7 @@ struct ContentView: View {
             .padding(.horizontal)
             
             
-            .navigationTitle("Main")
+            
             
         }
         

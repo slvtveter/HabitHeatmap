@@ -11,8 +11,8 @@ import SwiftUI
 struct HabitHeatmapApp: App {
     var body: some Scene {
         WindowGroup {
-           // ContentView()
-            HabitDetailView(viewModel: HabitViewModel(), habit: Habit(name: "a", completedDates: []))
+            ContentView()
+           
         }
     }
 }
