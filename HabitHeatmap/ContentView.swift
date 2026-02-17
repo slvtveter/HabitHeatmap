@@ -8,32 +8,52 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @StateObject var viewModel = HabitViewModel()
-    let columns = Array(repeating: GridItem(.fixed(30), spacing: 5), count: 7)
+    
+    let columns = Array(repeating: GridItem(.fixed(30), spacing: 8), count: 7)
     var body: some View {
-        //NavigationStack {
-            HStack {
-                Text("Streak: \(viewModel.habit.completedDates.count)")
-            }
-            LazyVGrid(columns: columns, spacing: 5) {
-                ForEach(viewModel.lastDays(28), id: \.self) { date in
-                    Rectangle()
-                        .fill(viewModel.habit.completedDates.contains { Calendar.current.isDate($0, inSameDayAs: date)} ? Color.green : Color.green.opacity(0.2))
-                        .frame(width: 30, height: 30)
-                        .cornerRadius(8)
+        NavigationView {
+            VStack(spacing: 16) {
+                Text("Overall activity")
+                    .font(.title3)
+                
+                LazyVGrid(columns: columns) {
+                    ForEach(viewModel.lastDays(28), id: \.self) { day in
+                        Rectangle()
+                            .fill(viewModel.colorFor(date: day))
+                            .frame(width: 30, height: 30)
+                            .cornerRadius(4)
+                    }
+                }
+                .padding()
+                .background(Color.secondary.opacity(0.1))
+                .cornerRadius(16)
+                .padding()
+                NavigationLink(destination: HabitListView(viewModel: viewModel)) {
+                    HStack{
+                        Image(systemName: "leaf")
+                        Text("All habits")
+                    }
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(12)
+                        
                 }
             }
-            Button(action: {viewModel.markDone(on: Date())}){
-                Text("Complete today!")
-            }
-       
-            Button(action: { viewModel.remark() }) {
-                Text("Delete last")
-            }
+            .padding(.horizontal)
             
-          //  .navigationTitle(viewModel.habit.name)
-       // }
+            
+            .navigationTitle("Main")
+            
+        }
+        
+        
     }
+    
 }
 
 #Preview {
